@@ -2,6 +2,14 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 class FriendsList extends Component {
+
+  constructor() {
+      super();
+      this.state = {
+        friends: [],
+    }
+}
+
   render() {
     return (
       <div>
@@ -20,6 +28,16 @@ class FriendsList extends Component {
       </div>
     );
   }
+
+  componentDidMount() {
+    axios.get('http://localhost:5000/friends')
+      .then(response => {
+        this.setState({ friends: response.data});
+      }); // axios will get the information, when it gets it then it will run the this.setState.
+  }
+
 }
+
+
 
 export default FriendsList;
